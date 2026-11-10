@@ -33,3 +33,17 @@ passive-interface eth0.30
 passive-interface eth0.99
 end
 FIN
+# DHCP et DNS du site de Paris (nécessite : apk add dnsmasq, une seule fois)
+killall dnsmasq 2>/dev/null
+cat > /etc/dnsmasq.conf <<'CONF'
+interface=eth0.10
+bind-interfaces
+domain=sabco.local
+local=/sabco.local/
+dhcp-range=10.1.10.100,10.1.10.200,255.255.255.0,12h
+dhcp-option=option:router,10.1.10.1
+dhcp-option=option:dns-server,10.1.10.1
+dhcp-leasefile=/tmp/dnsmasq.leases
+address=/routeur-paris.sabco.local/10.1.10.1
+CONF
+dnsmasq -C /etc/dnsmasq.conf

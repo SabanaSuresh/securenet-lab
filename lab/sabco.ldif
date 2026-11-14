@@ -1,0 +1,33 @@
+dn: ou=users,dc=sabco,dc=local
+objectClass: organizationalUnit
+ou: users
+
+dn: ou=groups,dc=sabco,dc=local
+objectClass: organizationalUnit
+ou: groups
+
+dn: uid=alice,ou=users,dc=sabco,dc=local
+objectClass: inetOrgPerson
+uid: alice
+cn: Alice Martin
+sn: Martin
+mail: alice@sabco.local
+userPassword: alice123
+
+dn: uid=bruno,ou=users,dc=sabco,dc=local
+objectClass: inetOrgPerson
+uid: bruno
+cn: Bruno Durand
+sn: Durand
+mail: bruno@sabco.local
+userPassword: bruno123
+
+dn: cn=compta,ou=groups,dc=sabco,dc=local
+objectClass: groupOfNames
+cn: compta
+member: uid=alice,ou=users,dc=sabco,dc=local
+
+dn: cn=it,ou=groups,dc=sabco,dc=local
+objectClass: groupOfNames
+cn: it
+member: uid=bruno,ou=users,dc=sabco,dc=local
